@@ -3,16 +3,6 @@ import Product from "./Product";
 import ProductDetail from "./ProductDetail";
 import Table from "./Table";
 function App() {
-  const [flip, setFlip] = useState(false);
-  let key1 = "table1";
-  let key2 = "table2";
-  if (flip) {
-    key1 = "table2";
-    key2 = "table1";
-  }
-  function handleflip() {
-    setFlip(!flip);
-  }
   return (
     <>
       {/* <div>
@@ -43,16 +33,11 @@ function App() {
           />
         </div>
       </div> */}
-      <ProductDetail />
+      {/* <ProductDetail /> */}
       <div className="flex">
-        <Table key={key1} />
-        <Table key={key2} />
+        <Table />
+        <Table />
       </div>
-      <button
-        onClick={handleflip}
-        className="bg-red-600 text-white py-1 px-2 rounded-md">
-        Flip
-      </button>
     </>
   );
 }
