@@ -2,15 +2,14 @@ import React from "react";
 function ProductDetail() {
   return (
     <>
-      <div className="flex gap-16 mx-48">
-        <div>
+      <div className="flex gap-16 mx-48 my-20">
+        <div className="max-w-sm">
           <img
-            className="w-96"
-            src="https://cdn.discordapp.com/attachments/992343608189526056/1002832090527711283/mug-white-4.jpeg"
+            src="https://m.media-amazon.com/images/I/51f39cB-ptL._AC_UF894,1000_QL80_.jpg"
             alt="mug"
           />
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="max-w-xs flex flex-col gap-4">
           <h2 className="text-3xl font-semibold">Black Printed Coffee Mug</h2>
           <span className="text-xl font-semibold">$15.00</span>
           <p>
