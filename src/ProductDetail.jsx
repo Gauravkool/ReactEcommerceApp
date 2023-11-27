@@ -1,22 +1,33 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
+import { allData } from "./data";
+import { IoMdArrowRoundBack } from "react-icons/io";
 function ProductDetail() {
+  const params = useParams();
+  const id = +params.id;
+
+  let product;
+  for (let i = 0; i < allData.length; i++) {
+    const p = allData[i];
+    if (id === p.id) {
+      product = p;
+      break;
+    }
+  }
   return (
-    <>
-      <div className="flex gap-16 mx-48 my-20">
+    <div className="m-20">
+      <Link to="/" className="text-xl mb-4 flex">
+        <IoMdArrowRoundBack className="text-4xl" />
+        <span>Back</span>
+      </Link>
+      <div className="flex gap-16">
         <div className="max-w-sm">
-          <img
-            src="https://m.media-amazon.com/images/I/51f39cB-ptL._AC_UF894,1000_QL80_.jpg"
-            alt="mug"
-          />
+          <img src={product.image} alt="mug" />
         </div>
         <div className="max-w-xs flex flex-col gap-4">
-          <h2 className="text-3xl font-semibold">Black Printed Coffee Mug</h2>
-          <span className="text-xl font-semibold">$15.00</span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-            ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque
-            qui.
-          </p>
+          <h2 className="text-3xl font-semibold">{product.title}</h2>
+          <span className="text-xl font-semibold">${product.price}</span>
+          <p>{product.discription}</p>
           <div>
             <input
               className="w-8 rounded-md border border-gray-100"
@@ -29,7 +40,7 @@ function ProductDetail() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default ProductDetail;

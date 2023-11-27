@@ -230,6 +230,8 @@ export const allData = [
     id: 1,
     title: "Black plain mug",
     category: "Mug",
+    discription:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque qui",
     price: "999",
     image:
       "https://m.media-amazon.com/images/I/51f39cB-ptL._AC_UF894,1000_QL80_.jpg",
@@ -238,6 +240,8 @@ export const allData = [
     id: 2,
     title: "T-shirt",
     category: "Black T-shirt",
+    discription:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque qui",
     price: "499",
     image: "https://m.media-amazon.com/images/I/61kLgtW5ScL._SY741_.jpg",
   },
@@ -246,6 +250,8 @@ export const allData = [
     id: 3,
     title: "iPhone",
     category: "Mobile",
+    discription:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque qui",
     price: "1999",
     image:
       "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-blue?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1661026582322",

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function Product({ title, category, image, price }) {
+function Product({ title, category, image, price , id}) {
+  
   return (
     <>
       <div className="w-60 flex flex-col bg-white rounded-md p-2 space-y-4">
@@ -18,7 +19,7 @@ function Product({ title, category, image, price }) {
           <span className="grow"></span>
           <Link
             className="bg-red-500 self-start hover:bg-red-400 text-white px-2 py-1 rounded-md text-xs"
-            to="/products/1">
+            to={"products/" + id}>
             View Details
           </Link>
         </div>

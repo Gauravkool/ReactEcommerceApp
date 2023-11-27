@@ -6,13 +6,7 @@ function ProductList({ products }) {
     <>
       <div className="flex gap-2">
         {products.map((product) => (
-          <Product
-            key={product.id}
-            title={product.title}
-            image={product.image}
-            category={product.category}
-            price={product.price}
-          />
+          <Product key={product.id} {...product} />
         ))}
       </div>
     </>
