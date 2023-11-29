@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import ProductList from "./ProductList";
-import { allData } from "./data";
 import { getProductsList } from "./API";
 import NoMatching from "./Nomatching";
+import Loading from "./Loading";
 
 function ProductListPage() {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("default");
   const [productList, setProductList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const list = getProductsList();
-    setProductList(list);
+    getProductsList().then((response) =>
+      setProductList(response.data.products)
+    );
+    setLoading(false);
   }, []);
 
   const data = productList.filter((p) => {
@@ -35,6 +38,10 @@ function ProductListPage() {
     console.log("sorted value", e.target.value);
     setSort(e.target.value);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="p-24 flex flex-col">
       <div className="mb-2">
@@ -55,10 +62,9 @@ function ProductListPage() {
           <option value="priceHigh">Sort by price high to low</option>
         </select>
       </div>
-      {data.length > 0 ? (
-        <ProductList products={data} />
-      ) : (
-        <NoMatching>No matching products please try something else</NoMatching>
+      {data.length > 0 && <ProductList products={data} />}
+      {data.length == 0 && (
+        <NoMatching>no matching products, please try something else</NoMatching>
       )}
     </div>
   );
