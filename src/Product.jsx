@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function Product({ title, category, image, price , id}) {
+function Product({ title, category, thumbnail, price , id}) {
   
   return (
     <>
-      <div className="w-60 flex flex-col bg-white rounded-md p-2 space-y-4">
-        <div className="w-full h-60">
+      <div className="bg-white rounded-md space-y-4">
+        <div className="w-full h-80">
           <img
-            className="w-full h-full object-cover"
-            src={image}
+            className="w-full h-full object-cover aspect-square"
+            src={thumbnail}
             alt="picture"
           />
         </div>
-        <div className="space-y-1 flex flex-col">
+        <div className="space-y-1 flex flex-col p-4">
           <div className="text-gray-600 text-xs">{category}</div>
           <div className="font-semibold text-sm">{title}</div>
           <div className="text-indigo-900 text-xs">{price}</div>

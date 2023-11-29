@@ -1,9 +1,8 @@
-import { allData } from "./data";
+import axios from "axios";
 
 export const getProductData = (id) => {
-  console.log(id, "id");
+  return axios.get("https://dummyjson.com/products/" + id);
 };
 export const getProductsList = () => {
-  console.log("getProductsList");
-  return allData;
+  return axios.get("https://dummyjson.com/products");
 };
