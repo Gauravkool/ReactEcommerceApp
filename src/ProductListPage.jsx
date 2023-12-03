@@ -11,9 +11,7 @@ function ProductListPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProductsList().then((response) =>
-      setProductList(response.data.products)
-    );
+    getProductsList().then((products) => setProductList(products));
     setLoading(false);
   }, []);
 
@@ -43,29 +41,28 @@ function ProductListPage() {
     return <Loading />;
   }
   return (
-    <div className="p-24 flex flex-col">
-      <div className="mb-2">
-        <input
-          value={query}
-          type="text"
-          placeholder="Search"
-          className="rounded-md border p-2 border-green-500"
-          onChange={handleQueryChange}
-        />
-        <select
-          value={sort}
-          onChange={handleSortChange}
-          className="border border-green-500 rounded-md p-2 ml-2">
-          <option value="default">Default sort</option>
-          <option value="title">Sort by Title</option>
-          <option value="priceLow">Sort by price low to high</option>
-          <option value="priceHigh">Sort by price high to low</option>
-        </select>
-      </div>
+    <div className="max-w-6xl bg-white mx-auto px-9 py-12.5 my-16">
+      <input
+        value={query}
+        type="text"
+        placeholder="Search"
+        className="rounded-md border p-2 border-green-500"
+        onChange={handleQueryChange}
+      />
+      <select
+        value={sort}
+        onChange={handleSortChange}
+        className="border border-green-500 rounded-md p-2 mb-2 ml-2">
+        <option value="default">Default sort</option>
+        <option value="title">Sort by Title</option>
+        <option value="priceLow">Sort by price low to high</option>
+        <option value="priceHigh">Sort by price high to low</option>
+      </select>
+
       {data.length > 0 && <ProductList products={data} />}
-      {data.length == 0 && (
-        <NoMatching>no matching products, please try something else</NoMatching>
-      )}
+      {/* {data.length == 0 && (
+        <NoMatching>No matching products, please try something else</NoMatching>
+      )} */}
     </div>
   );
 }
