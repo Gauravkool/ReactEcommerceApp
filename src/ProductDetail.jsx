@@ -4,25 +4,31 @@ import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { getProductData } from "./API";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
-function ProductDetail() {
+function ProductDetail({ onAddToCart }) {
   const id = +useParams().id;
   const [product, setproduct] = useState();
   const [loading, setLoading] = useState(true);
+  const [count, setCount] = useState(1);
   useEffect(() => {
     getProductData(id)
       .then((product) => {
         setproduct(product);
         setLoading(false);
-        return 10;
+        setCount(1);
       })
       .catch((err) => {
         console.log("api me error aaya", err);
         setLoading(false);
-        return 20;
-      })
-      .then((data) => console.log("data is ", data));
+      });
   }, [id]);
 
+  const handelChangeCount = (e) => {
+    setCount(+e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    onAddToCart(id, count);
+  };
   if (loading) {
     return <Loading />;
   }
@@ -33,9 +39,11 @@ function ProductDetail() {
   return (
     <>
       <div className="my-5 bg-white max-w-6xl mx-auto p-5">
-        <Link to="/" className="text-xl flex">
-          <HiArrowSmLeft className="text-4xl" />
-          <span>Back</span>
+        <Link to="/" className="text-xl flex items-center gap-x-2">
+          <HiArrowSmLeft className="text-4xl border-4 border-gray-200  rounded-full shadow-2xl" />
+          <span className="text-lg font-mono font-semibold text-gray-700">
+            Back
+          </span>
         </Link>
         <div className="flex gap-16 my-3">
           <div className="max-w-xs aspect-square">
@@ -44,14 +52,20 @@ function ProductDetail() {
           <div className="max-w-xs flex flex-col gap-4">
             <h2 className="text-3xl font-semibold">{product.title}</h2>
             <span className="text-xl font-semibold">${product.price}</span>
-            <p>{product.description}</p>
+            <p className="font-mono text-gray-700 text-md">
+              {product.description}
+            </p>
             <div>
+              
               <input
                 className="w-8 rounded-md border border-gray-200"
                 type="number"
-                value="1"
+                value={count}
+                onChange={handelChangeCount}
               />
-              <button className="text-white bg-primary-dark hover:bg-primary-default rounded-md py-1 px-4 ml-2">
+              <button
+                onClick={handleButtonClick}
+                className="text-white bg-primary-dark hover:bg-primary-default rounded-md py-1 px-4 ml-2">
                 Add to Cart
               </button>
             </div>
@@ -60,16 +74,24 @@ function ProductDetail() {
         <div className="flex justify-between">
           <div>
             {id > 1 && (
-              <Link to={"/products/" + (id - 1)} className="flex items-center">
-                <HiArrowSmLeft className="text-2xl " />
-                <span>previous</span>
+              <Link
+                to={"/products/" + (id - 1)}
+                className="flex items-center gap-x-1">
+                <HiArrowSmLeft className="text-4xl border-4 border-gray-200  rounded-full shadow-2xl " />
+                <span className="text-lg font-mono font-semibold text-gray-700">
+                  previous
+                </span>
               </Link>
             )}
           </div>
           <div>
-            <Link to={"/products/" + (id + 1)} className="flex">
-              <HiArrowSmRight className="text-2xl" />
-              <span>next</span>
+            <Link
+              to={"/products/" + (id + 1)}
+              className="flex items-center gap-x-1">
+              <HiArrowSmRight className="text-4xl border-4 border-gray-200 rounded-full shadow-2xl" />
+              <span className="text-lg font-mono font-semibold text-gray-700">
+                next
+              </span>
             </Link>
           </div>
         </div>
