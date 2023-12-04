@@ -15,7 +15,7 @@ export default {
         dark: "rgb(248, 48, 48 )",
       },
       gray: {
-        200: "rgb(244, 245, 246)",
+        200: "rgb(230, 230, 230)",
         700: "rgb(60,60,60)",
       },
       white: colors.white,

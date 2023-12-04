@@ -42,22 +42,24 @@ function ProductListPage() {
   }
   return (
     <div className="max-w-6xl bg-white mx-auto px-9 py-12.5 my-16">
-      <input
-        value={query}
-        type="text"
-        placeholder="Search"
-        className="rounded-md border p-2 border-green-500"
-        onChange={handleQueryChange}
-      />
-      <select
-        value={sort}
-        onChange={handleSortChange}
-        className="border border-green-500 rounded-md p-2 mb-2 ml-2">
-        <option value="default">Default sort</option>
-        <option value="title">Sort by Title</option>
-        <option value="priceLow">Sort by price low to high</option>
-        <option value="priceHigh">Sort by price high to low</option>
-      </select>
+      <div className="flex justify-end mb-2">
+        <input
+          value={query}
+          type="text"
+          placeholder="Search"
+          className="rounded-md border p-2 border-gray-200"
+          onChange={handleQueryChange}
+        />
+        <select
+          value={sort}
+          onChange={handleSortChange}
+          className="border border-gray-200 rounded-md p-2 mb-2 ml-2">
+          <option value="default">Default sort</option>
+          <option value="title">Sort by Title</option>
+          <option value="priceLow">Sort by price low to high</option>
+          <option value="priceHigh">Sort by price high to low</option>
+        </select>
+      </div>
 
       {data.length > 0 && <ProductList products={data} />}
       {/* {data.length == 0 && (
