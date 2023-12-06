@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { getProductData } from "./API";
@@ -22,13 +22,14 @@ function ProductDetail({ onAddToCart }) {
       });
   }, [id]);
 
-  const handelChangeCount = (e) => {
+  const handelChangeCount = useCallback((e) => {
     setCount(+e.target.value);
-  };
+  }, []);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = useCallback(() => {
     onAddToCart(id, count);
-  };
+  }, [id, count]);
+
   if (loading) {
     return <Loading />;
   }
@@ -56,7 +57,6 @@ function ProductDetail({ onAddToCart }) {
               {product.description}
             </p>
             <div>
-              
               <input
                 className="w-8 rounded-md border border-gray-200"
                 type="number"
@@ -99,4 +99,4 @@ function ProductDetail({ onAddToCart }) {
     </>
   );
 }
-export default ProductDetail;
+export default memo(ProductDetail);

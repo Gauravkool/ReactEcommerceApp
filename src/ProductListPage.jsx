@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ProductList from "./ProductList";
 import { getProductsList } from "./API";
 import NoMatching from "./Nomatching";
@@ -15,27 +15,33 @@ function ProductListPage() {
     setLoading(false);
   }, []);
 
-  const data = productList.filter((p) => {
-    const lowerCaseTitle = p.title.toLowerCase();
-    const lowerCaseQuery = query.toLowerCase();
-    return lowerCaseTitle.indexOf(lowerCaseQuery) != -1;
-  });
+  const data = useMemo(() => {
+    const filterData = productList.filter((p) => {
+      const lowerCaseTitle = p.title.toLowerCase();
+      const lowerCaseQuery = query.toLowerCase();
+      return lowerCaseTitle.indexOf(lowerCaseQuery) != -1;
+    });
 
-  if (sort == "priceLow") {
-    data.sort((a, b) => a.price - b.price);
-  } else if (sort == "priceHigh") {
-    data.sort((a, b) => b.price - a.price);
-  } else if (sort == "title") {
-    data.sort((a, b) => (a.title > b.title ? 1 : -1));
-  }
-  const handleQueryChange = (e) => {
+    const sortedData = [...filterData];
+    
+    if (sort == "priceLow") {
+      sortedData.sort((a, b) => a.price - b.price);
+    } else if (sort == "priceHigh") {
+      sortedData.sort((a, b) => b.price - a.price);
+    } else if (sort == "title") {
+      sortedData.sort((a, b) => (a.title > b.title ? 1 : -1));
+    }
+    return sortedData;
+  }, [query, productList, sort]);
+
+  const handleQueryChange = useCallback((e) => {
     setQuery(e.target.value);
-  };
+  }, []);
 
-  const handleSortChange = (e) => {
+  const handleSortChange = useCallback((e) => {
     console.log("sorted value", e.target.value);
     setSort(e.target.value);
-  };
+  }, []);
 
   if (loading) {
     return <Loading />;
