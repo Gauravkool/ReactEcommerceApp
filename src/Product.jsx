@@ -15,12 +15,17 @@ function Product({ title, category, thumbnail, price, id, rating }) {
         <div className="gap-0.5 flex flex-col mt-1">
           <div className="text-gray-700 text-xs">{category}</div>
           <div className="font-semibold text-sm ">{title}</div>
-          <span className="flex text-primary-light">
-            <IoIosStarOutline />
-            <IoIosStarOutline />
-            <IoIosStarOutline />
-            <IoIosStarOutline />
-          </span>
+          <div className="flex items-center space-x-2">
+            <span className="text-sm font-semibold text-gray-700 ">
+              {rating}
+            </span>
+            <span className="flex text-primary-light">
+              <IoIosStarOutline />
+              <IoIosStarOutline />
+              <IoIosStarOutline />
+              <IoIosStarOutline />
+            </span>
+          </div>
 
           <div className="font-bold text-sm">${price}</div>
           <Link

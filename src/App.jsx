@@ -4,12 +4,13 @@ import ProductDetail from "./ProductDetail";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import NotFound from "./NotFound";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 function App() {
   const savedDataString = localStorage.getItem("myCart") || "{}";
   const savedData = JSON.parse(savedDataString);
   const [cart, setCart] = useState(savedData);
+  
   const handleAddToCart = (productId, count) => {
     const oldCart = cart[productId] || 0;
     const newCart = { ...cart, [productId]: oldCart + count };
@@ -17,11 +18,13 @@ function App() {
     const cartString = JSON.stringify(newCart);
     localStorage.setItem("myCart", cartString);
   };
-
-  const totalCount = Object.keys(cart).reduce(
-    (previousValue, currentValue) => previousValue + cart[currentValue],
-    0
-  );
+  const totalCount = useMemo(() => {
+    console.log("cart calculation");
+    return Object.keys(cart).reduce(
+      (previousValue, currentValue) => previousValue + cart[currentValue],
+      0
+    );
+  }, [cart]);
   return (
     <div className="bg-gray-200 h-screen overflow-scroll">
       <Navbar productCount={totalCount} />

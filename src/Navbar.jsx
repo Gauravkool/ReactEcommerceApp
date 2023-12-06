@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 function Navbar({ productCount }) {
   return (
@@ -17,4 +17,4 @@ function Navbar({ productCount }) {
     </div>
   );
 }
-export default Navbar;
+export default memo(Navbar);
