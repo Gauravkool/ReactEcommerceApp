@@ -3,6 +3,7 @@ import ProductList from "./ProductList";
 import { getProductsList } from "./API";
 import NoMatching from "./Nomatching";
 import Loading from "./Loading";
+import Input from "./Input";
 
 function ProductListPage() {
   const [query, setQuery] = useState("");
@@ -49,7 +50,7 @@ function ProductListPage() {
   return (
     <div className="max-w-6xl bg-white mx-auto px-9 py-12.5 my-16">
       <div className="flex justify-end mb-2">
-        <input
+        <Input
           value={query}
           type="text"
           placeholder="Search"

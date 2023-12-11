@@ -1,34 +1,31 @@
 import Button from "./Button";
-import { useFormik } from "formik";
+import { withFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import Input from "./Input";
 
-function ForgotPassword() {
-  const callLoginApi = (values) => {
-    console.log("callLoginApi called");
-    console.log("sending data ", values.email);
-  };
+const callLoginApi = (values) => {
+  console.log("callLoginApi called");
+  console.log("sending data ", values.email);
+};
 
-  const schema = Yup.object().shape({
-    email: Yup.string().email().required(),
-  });
-  const {
-    handleChange,
-    values,
-    handleSubmit,
-    handleBlur,
-    errors,
-    touched,
-    isValid,
-    dirty,
-  } = useFormik({
-    initialValues: {
-      email: "",
-    },
-    onSubmit: callLoginApi,
-    validationSchema: schema,
-  });
+const schema = Yup.object().shape({
+  email: Yup.string().email().required(),
+});
 
+const initialValues = {
+  email: "",
+};
+export function ForgotPassword({
+  handleChange,
+  values,
+  handleSubmit,
+  handleBlur,
+  errors,
+  touched,
+  isValid,
+  dirty,
+}) {
   return (
     <div className="flex items-center justify-center w-full h-screen bg-gray-200">
       <form
@@ -37,29 +34,25 @@ function ForgotPassword() {
         <h1 className="text-2xl font-semibold text-gray-700 font-serif self-center mb-4">
           Forgot Your Password
         </h1>
-        <div>
-          <label htmlFor="email-address" className="sr-only">
-            Your Email address
-          </label>
-          <input
-            id="email-address"
-            type="email"
-            name="email"
-            required
-            value={values.email}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            autoComplete="email"
-            placeholder="Your Email address"
-            className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-200 px-3 py-2 text-gray-700 placeholder-gray-700 focus:z-10 focus:border-primary-default focus:outline-none focus:ring-primary-default sm:text-sm"
-          />
-        </div>
-        {touched.email && errors.email && (
-          <div className="text-primary-dark text-sm">{errors.email}</div>
-        )}
+
+        <Input
+          id="email-address"
+          type="email"
+          name="email"
+          label="Your Email address"
+          required
+          values={values.email}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          error={errors.email}
+          touched={touched.email}
+          autoComplete="email"
+          placeholder="Your Email address"
+          className=""
+        />
 
         <Button type="submit" className="my-3" disabled={!dirty && !isValid}>
-          request password reset
+          Request password reset
         </Button>
         <p className="self-center text-gray-700">
           Back to
@@ -71,4 +64,10 @@ function ForgotPassword() {
     </div>
   );
 }
-export default ForgotPassword;
+
+const myEnhancedForgotPassword = withFormik({
+  initialValues: initialValues,
+  validationSchema: schema,
+  handleSubmit: callLoginApi,
+});
+export default myEnhancedForgotPassword(ForgotPassword);
