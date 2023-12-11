@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 import ForgotPassword from "./ForgotPassword";
+import CartPage from "./CartPage";
 
 function App() {
   const savedDataString = localStorage.getItem("myCart") || "{}";
@@ -17,12 +18,16 @@ function App() {
   const handleAddToCart = (productId, count) => {
     const oldCart = cart[productId] || 0;
     const newCart = { ...cart, [productId]: oldCart + count };
+    updateCart(newCart);
+  };
+
+  const updateCart = (newCart) => {
     setCart(newCart);
     const cartString = JSON.stringify(newCart);
     localStorage.setItem("myCart", cartString);
   };
+
   const totalCount = useMemo(() => {
-    console.log("cart calculation");
     return Object.keys(cart).reduce(
       (previousValue, currentValue) => previousValue + cart[currentValue],
       0
@@ -37,6 +42,10 @@ function App() {
           <Route
             path="/products/:id"
             element={<ProductDetail onAddToCart={handleAddToCart} />}
+          />
+          <Route
+            path="/cart"
+            element={<CartPage cart={cart} updateCart={updateCart} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

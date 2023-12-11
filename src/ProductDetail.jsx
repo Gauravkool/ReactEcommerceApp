@@ -4,6 +4,7 @@ import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { getProductData } from "./API";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
+import Input from "./Input";
 function ProductDetail({ onAddToCart }) {
   const id = +useParams().id;
   const [product, setproduct] = useState();
@@ -56,9 +57,9 @@ function ProductDetail({ onAddToCart }) {
             <p className="font-mono text-gray-700 text-md">
               {product.description}
             </p>
-            <div>
-              <input
-                className="w-8 rounded-md border border-gray-200"
+            <div className="flex">
+              <Input
+                className="w-14 rounded-md border border-gray-200"
                 type="number"
                 value={count}
                 onChange={handelChangeCount}
