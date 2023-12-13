@@ -9,6 +9,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import ForgotPassword from "./ForgotPassword";
 import CartPage from "./CartPage";
+import Test from "./Test";
 
 function App() {
   const savedDataString = localStorage.getItem("myCart") || "{}";
@@ -34,7 +35,7 @@ function App() {
     );
   }, [cart]);
   return (
-    <div className="bg-gray-200 h-screen overflow-scroll">
+    <div className="bg-gray-200 h-screen overflow-scroll flex flex-col">
       <Navbar productCount={totalCount} />
       <div className="grow">
         <Routes>
@@ -51,6 +52,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
       <Footer />

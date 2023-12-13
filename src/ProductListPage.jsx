@@ -54,7 +54,7 @@ function ProductListPage() {
           value={query}
           type="text"
           placeholder="Search"
-          className="rounded-md border p-2 border-gray-200"
+          className="rounded-md border px-3 py-2 border-gray-200"
           onChange={handleQueryChange}
         />
         <select
