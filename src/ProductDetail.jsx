@@ -29,6 +29,7 @@ function ProductDetail({ onAddToCart }) {
 
   const handleButtonClick = useCallback(() => {
     onAddToCart(id, count);
+    setCount(1);
   }, [id, count]);
 
   if (loading) {
@@ -58,12 +59,14 @@ function ProductDetail({ onAddToCart }) {
               {product.description}
             </p>
             <div className="flex">
-              <Input
-                className="w-14 rounded-md border border-gray-200"
-                type="number"
-                value={count}
-                onChange={handelChangeCount}
-              />
+              <div className="w-16">
+                <Input
+                  className=""
+                  type="number"
+                  value={count}
+                  onChange={handelChangeCount}
+                />
+              </div>
               <button
                 onClick={handleButtonClick}
                 className="text-white bg-primary-dark hover:bg-primary-default rounded-md py-1 px-4 ml-2">

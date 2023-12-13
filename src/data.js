@@ -225,43 +225,57 @@
 //   },
 // ];
 
-export const allData = [
+export const dummyProducts = [
   {
     id: 1,
-    title: "Black plain mug",
-    category: "Mug",
-    discription:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque qui",
-    price: "999",
-    image:
-      "https://m.media-amazon.com/images/I/51f39cB-ptL._AC_UF894,1000_QL80_.jpg",
+    title: "iPhone 9",
+    description: "An apple mobile which is nothing like apple",
+    price: 549,
+    discountPercentage: 12.96,
+    rating: 4.69,
+    stock: 94,
+    brand: "Apple",
+    category: "smartphones",
+    thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    images: [
+      "https://i.dummyjson.com/data/products/1/1.jpg",
+      "https://i.dummyjson.com/data/products/1/2.jpg",
+      "https://i.dummyjson.com/data/products/1/3.jpg",
+      "https://i.dummyjson.com/data/products/1/4.jpg",
+      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    ],
   },
   {
     id: 2,
-    title: "T-shirt",
-    category: "Black T-shirt",
-    discription:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque qui",
-    price: "499",
-    image: "https://m.media-amazon.com/images/I/61kLgtW5ScL._SY741_.jpg",
+    title: "iPhone X",
+    description:
+      "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+    price: 899,
+    discountPercentage: 17.94,
+    rating: 4.44,
+    stock: 34,
+    brand: "Apple",
+    category: "smartphones",
+    thumbnail: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+    images: [
+      "https://i.dummyjson.com/data/products/2/1.jpg",
+      "https://i.dummyjson.com/data/products/2/2.jpg",
+      "https://i.dummyjson.com/data/products/2/3.jpg",
+      "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+    ],
   },
-
   {
     id: 3,
-    title: "iPhone",
-    category: "Mobile",
-    discription:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit ratione in ipsum sequi nulla nisi soluta reiciendis quisquam cumque qui",
-    price: "1999",
-    image:
-      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-blue?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1661026582322",
-  },
-  {
-    id: 4,
-    title: "HP Elite Probook",
-    category: "Laptop",
-    price: "199",
-    image:
-      "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Flaptops%2F&psig=AOvVaw2YYVxH1zPYbY9g-C__YCgW&ust=1700754007102000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCNCNvMT414IDFQAAAAAdAAAAABAE",
+    title: "Samsung Universe 9",
+    description:
+      "Samsung's new variant which goes beyond Galaxy to the Universe",
+    price: 1249,
+    discountPercentage: 15.46,
+    rating: 4.09,
+    stock: 36,
+    brand: "Samsung",
+    category: "smartphones",
+    thumbnail: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+    images: ["https://i.dummyjson.com/data/products/3/1.jpg"],
   },
 ];
