@@ -4,7 +4,6 @@ import { getProductsList } from "./API";
 import NoMatching from "./Nomatching";
 import Loading from "./Loading";
 import Input from "./Input";
-import { Navigate } from "react-router-dom";
 
 function ProductListPage() {
   const [query, setQuery] = useState("");

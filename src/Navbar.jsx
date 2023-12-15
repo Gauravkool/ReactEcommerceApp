@@ -2,8 +2,11 @@
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
+import { useContext } from "react";
+import { UserContext } from "./App";
 
-function Navbar({ productCount, setUser }) {
+function Navbar({ productCount }) {
+  const { setUser } = useContext(UserContext);
   const handleLogoutUser = () => {
     localStorage.removeItem("token");
     setUser(undefined);

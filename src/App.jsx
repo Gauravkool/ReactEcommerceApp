@@ -15,7 +15,7 @@ import Loading from "./Loading";
 import UserRoute from "./UserRoute";
 import AuthRoute from "./AuthRoute";
 
-// export const UserContext = createContext()
+export const UserContext = createContext();
 function App() {
   const savedDataString = localStorage.getItem("myCart") || "{}";
   const savedData = JSON.parse(savedDataString);
@@ -65,55 +65,57 @@ function App() {
   }
   return (
     <div className="bg-gray-200 h-screen overflow-scroll flex flex-col">
-      <Navbar productCount={totalCount} setUser={setUser} />
-      <div className="grow">
-        <Routes>
-          <Route
-            index
-            element={
-              <UserRoute user={user}>
-                <ProductListPage />
-              </UserRoute>
-            }
-          />
-          <Route
-            path="/products/:id"
-            element={
-              <UserRoute user={user}>
-                <ProductDetail onAddToCart={handleAddToCart} />
-              </UserRoute>
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <UserRoute user={user}>
-                <CartPage cart={cart} updateCart={updateCart} />
-              </UserRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <AuthRoute user={user}>
-                <Login setUser={setUser} />
-              </AuthRoute>
-            }
-          />
-          <Route path="/signup" element={<Signup user={user} />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route
-            path="*"
-            element={
-              <UserRoute>
-                <NotFound />
-              </UserRoute>
-            }
-          />
-          <Route path="/test" element={<Test />} />
-        </Routes>
-      </div>
-      <Footer />
+      <UserContext.Provider value={{ user, setUser }}>
+        <Navbar productCount={totalCount} />
+        <div className="grow">
+          <Routes>
+            <Route
+              index
+              element={
+                <UserRoute>
+                  <ProductListPage />
+                </UserRoute>
+              }
+            />
+            <Route
+              path="/products/:id"
+              element={
+                <UserRoute>
+                  <ProductDetail onAddToCart={handleAddToCart} />
+                </UserRoute>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <UserRoute>
+                  <CartPage cart={cart} updateCart={updateCart} />
+                </UserRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <AuthRoute>
+                  <Login setUser={setUser} />
+                </AuthRoute>
+              }
+            />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route
+              path="*"
+              element={
+                <UserRoute>
+                  <NotFound />
+                </UserRoute>
+              }
+            />
+            <Route path="/test" element={<Test />} />
+          </Routes>
+        </div>
+        <Footer />
+      </UserContext.Provider>
     </div>
   );
 }

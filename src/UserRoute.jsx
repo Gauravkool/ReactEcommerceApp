@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-function UserRoute({ user, children }) {
+import { UserContext } from "./App";
+function UserRoute({ children }) {
+  const { user } = useContext(UserContext);
   if (!user) {
     return <Navigate to="/login" />;
   } else {
