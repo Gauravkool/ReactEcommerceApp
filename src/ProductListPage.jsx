@@ -4,6 +4,7 @@ import { getProductsList } from "./API";
 import NoMatching from "./Nomatching";
 import Loading from "./Loading";
 import Input from "./Input";
+import { Navigate } from "react-router-dom";
 
 function ProductListPage() {
   const [query, setQuery] = useState("");
@@ -24,7 +25,7 @@ function ProductListPage() {
     });
 
     const sortedData = [...filterData];
-    
+
     if (sort == "priceLow") {
       sortedData.sort((a, b) => a.price - b.price);
     } else if (sort == "priceHigh") {
@@ -47,6 +48,7 @@ function ProductListPage() {
   if (loading) {
     return <Loading />;
   }
+
   return (
     <div className="max-w-6xl bg-white mx-auto px-9 py-12.5 my-16">
       <div className="flex justify-end mb-2">

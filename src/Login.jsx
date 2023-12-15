@@ -3,9 +3,20 @@ import { withFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import Input from "./Input";
-const callLoginApi = (values) => {
-  console.log("callLoginApi called");
-  console.log("sending data ", values.email, values.password);
+import axios from "axios";
+const callLoginApi = (values, bag) => {
+  axios
+    .post("https://myeasykart.codeyogi.io/login", {
+      email: values.email,
+      password: values.password,
+    })
+    .then((res) => {
+      console.log(res.data);
+      const { user, token } = res.data;
+      localStorage.setItem("token", token);
+      bag.props.setUser(user);
+    })
+    .catch(() => console.log("Invalid Credential"));
 };
 
 const schema = Yup.object().shape({
