@@ -1,73 +1,89 @@
-import Button from "./Button";
 import { withFormik } from "formik";
-import { Link } from "react-router-dom";
+import React from "react";
+import Button from "./Button";
 import * as Yup from "yup";
+
 import Input from "./Input";
-const callLoginApi = (values) => {
-  console.log("callLoginApi called");
-  console.log("sending data ", values.email, values.password);
-};
+import axios from "axios";
+import { withUser, withAlert } from "./withProvider";
+import { Link } from "react-router-dom";
+
+function callLoginApi(values, bag) {
+  axios
+    .post("https://myeasykart.codeyogi.io/login", {
+      email: values.email,
+      password: values.myPassword,
+    })
+    .then((response) => {
+      const { user, token } = response.data;
+      localStorage.setItem("token", token);
+      bag.props.setUser(user);
+    })
+    .catch(() => {
+      bag.props.setAlert({
+        type: "error",
+        message: "Invalid Credentials or wrong email or password",
+      });
+    });
+}
 
 const schema = Yup.object().shape({
   email: Yup.string().email().required(),
-  password: Yup.string().min(8).required(),
+  myPassword: Yup.string().min(6).max(12).required(),
 });
 
 const initialValues = {
   email: "",
-  password: "",
+  myPassword: "",
 };
+
 export function Login({
-  handleChange,
-  values,
   handleSubmit,
-  handleBlur,
+  values,
   errors,
   touched,
-  isValid,
-  dirty,
+  handleChange,
+  handleBlur,
 }) {
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-gray-200">
+    <div className="flex items-center justify-center w-full h-screen bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col w-96 p-5 rounded-md shadow-md bg-white">
+        className="flex flex-col p-5 bg-white rounded-md shadow-md w-96">
         <h1 className="text-2xl font-semibold text-gray-700 font-serif self-center mb-4">
           Login to MyKart
         </h1>
-
         <Input
-          id="email-address"
-          type="email"
-          name="email"
-          label="Email address"
-          required
-          touched={touched.email}
-          error={errors.email}
           values={values.email}
-          onBlur={handleBlur}
+          error={errors.email}
+          touched={touched.email}
           onChange={handleChange}
+          onBlur={handleBlur}
+          label="Email address"
+          id="email-address"
+          name="email"
+          type="email"
+          required
           autoComplete="email"
-          placeholder="Email address"
-          className="rounded-b-none"
+          placeholder="Email or Username"
+          className="rounded-b-none py-2"
         />
         <Input
-          id="password"
-          type="password"
-          name="password"
-          label="Password"
-          required
-          touched={touched.password}
-          error={errors.password}
-          values={values.password}
-          onBlur={handleBlur}
+          values={values.myPassword}
+          error={errors.myPassword}
+          touched={touched.myPassword}
           onChange={handleChange}
-          autoComplete="password"
+          onBlur={handleBlur}
+          label="Password"
+          id="xyz"
+          name="myPassword"
+          type="password"
+          required
+          autoComplete="current-password"
           placeholder="Password"
-          className="rounded-t-none"
+          className="rounded-t-none py-2"
         />
-
-        <Button type="submit" className="my-3" disabled={!dirty && !isValid}>
+        <Button type="sumbit" className="my-5 py-2">
           Login
         </Button>
         <p className="self-center text-gray-700">
@@ -81,9 +97,10 @@ export function Login({
   );
 }
 
-const myEnhancedLogin = withFormik({
-  initialValues: initialValues,
+const FormikLogin = withFormik({
   validationSchema: schema,
+  initialValues: initialValues,
   handleSubmit: callLoginApi,
-});
-export default myEnhancedLogin(Login);
+})(Login);
+
+export default withAlert(withUser(FormikLogin));

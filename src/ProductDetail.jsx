@@ -39,6 +39,7 @@ function ProductDetail({ onAddToCart }) {
   if (!product) {
     return <NotFound />;
   }
+
   return (
     <>
       <div className="my-5 bg-white max-w-6xl mx-auto p-5">

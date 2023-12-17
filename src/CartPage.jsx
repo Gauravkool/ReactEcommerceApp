@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getProductData } from "./API";
 import Loading from "./Loading";
 import CartList from "./CartList";
+
 function CartPage({ cart, updateCart }) {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -17,6 +18,7 @@ function CartPage({ cart, updateCart }) {
   if (loading) {
     return <Loading />;
   }
+
   return (
     <div className="p-10">
       <div className="h-screen bg-white max-w-6xl mx-auto px-20 py-16">

@@ -48,10 +48,10 @@ export function ForgotPassword({
           touched={touched.email}
           autoComplete="email"
           placeholder="Your Email address"
-          className=""
+          className="py-2"
         />
 
-        <Button type="submit" className="my-3" disabled={!dirty && !isValid}>
+        <Button type="submit" className="my-3 py-2" disabled={!dirty && !isValid}>
           Request password reset
         </Button>
         <p className="self-center text-gray-700">
