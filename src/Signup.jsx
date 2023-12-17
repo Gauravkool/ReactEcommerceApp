@@ -57,7 +57,7 @@ export function Signup({
           error={errors.fullName}
           autoComplete="fullName"
           placeholder="Full Name"
-          className="rounded-b-none"
+          className="rounded-b-none py-2"
         />
 
         <Input
@@ -73,7 +73,7 @@ export function Signup({
           error={errors.userName}
           autoComplete="userName"
           placeholder="User Name"
-          className="rounded-none"
+          className="rounded-none py-2"
         />
 
         <Input
@@ -89,7 +89,7 @@ export function Signup({
           error={errors.email}
           autoComplete="email"
           placeholder="Email address"
-          className="rounded-none"
+          className="rounded-none py-2"
         />
 
         <Input
@@ -105,7 +105,7 @@ export function Signup({
           error={errors.password}
           autoComplete="password"
           placeholder="Password"
-          className="rounded-none"
+          className="rounded-none py-2"
         />
 
         <Input
@@ -121,10 +121,10 @@ export function Signup({
           error={errors.confirmPassword}
           autoComplete="confirmPassword"
           placeholder="Confirm Password"
-          className="rounded-t-none"
+          className="rounded-t-none py-2"
         />
 
-        <Button type="submit" className="my-3" disabled={!dirty && !isValid}>
+        <Button type="submit" className="my-5 py-2" disabled={!dirty && !isValid}>
           Signup
         </Button>
         <p className="self-center text-gray-700">

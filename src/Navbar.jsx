@@ -3,13 +3,15 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { useContext } from "react";
-import { UserContext } from "./App";
+import { UserContext } from "./Contexts";
 
-function Navbar({ productCount }) {
+function Navbar({ productCount, setCart }) {
   const { setUser } = useContext(UserContext);
   const handleLogoutUser = () => {
-    localStorage.removeItem("token");
     setUser(undefined);
+    localStorage.removeItem("token");
+    localStorage.removeItem("myCart");
+    setCart({});
   };
   return (
     <div className="py-4 bg-white">

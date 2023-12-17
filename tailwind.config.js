@@ -18,6 +18,8 @@ export default {
       white: colors.white,
       black: colors.black,
       indigo: colors.indigo,
+      green: colors.green,
+      red: colors.red,
     },
   },
   plugins: [],

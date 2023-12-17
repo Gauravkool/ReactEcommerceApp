@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { UserContext } from "./App";
-function withUser(IncomingComponent) {
-  function OutgoingComponent(props) {
-    const { user, setUser } = useContext(UserContext);
-    return <IncomingComponent {...props} user={user} setUser={setUser} />;
-  }
-  return OutgoingComponent;
-}
+import { UserContext } from "./Contexts";
+
+const withUser = (IncomingComponent) => (props) => {
+  const contextData = useContext(UserContext);
+  return <IncomingComponent {...props} {...contextData} />;
+};
+
 export default withUser;
