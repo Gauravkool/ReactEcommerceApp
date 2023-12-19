@@ -5,7 +5,8 @@ import { getProductData } from "./API";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
 import Input from "./Input";
-function ProductDetail({ onAddToCart }) {
+import { withCart } from "./withProvider";
+function ProductDetail({ addToCart }) {
   const id = +useParams().id;
   const [product, setproduct] = useState();
   const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ function ProductDetail({ onAddToCart }) {
   }, []);
 
   const handleButtonClick = useCallback(() => {
-    onAddToCart(id, count);
+    addToCart(id, count);
     setCount(1);
   }, [id, count]);
 
@@ -104,4 +105,4 @@ function ProductDetail({ onAddToCart }) {
     </>
   );
 }
-export default memo(ProductDetail);
+export default withCart(ProductDetail);

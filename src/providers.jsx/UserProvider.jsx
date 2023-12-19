@@ -5,6 +5,7 @@ function UserProvider({ children }) {
   const [user, setUser] = useState();
   const [loadingUser, setLoadingUser] = useState(true);
   const token = localStorage.getItem("token");
+
   useEffect(() => {
     if (token) {
       axios
@@ -22,14 +23,14 @@ function UserProvider({ children }) {
     } else {
       setLoadingUser(false);
     }
-  });
+  }, []);
 
   if (loadingUser) {
     return <div>Loading...</div>;
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ isLoggedIn: !!token, user, setUser }}>
       {children}
     </UserContext.Provider>
   );

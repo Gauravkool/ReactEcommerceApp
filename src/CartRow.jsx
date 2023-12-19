@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import Input from "./Input";
-import Button from "./Button";
+import { Link } from "react-router-dom";
 function CartRow({ product, quantity, onQuantityChange, onRemove }) {
   const handleChange = (e) => {
     onQuantityChange(product.id, +e.target.value);
@@ -13,9 +13,9 @@ function CartRow({ product, quantity, onQuantityChange, onRemove }) {
   return (
     <div className="flex items-center space-x-4 px-4 py-3 border border-gray-100">
       <span className="w-10 h-10 flex items-center text-gray-500">
-        <Button className="bg-gray-100 text-gray-400" onClick={handleRemove}>
+        <Link className=" text-gray-300 text-2xl" onClick={handleRemove}>
           <IoMdCloseCircle />
-        </Button>
+        </Link>
       </span>
       <div className="w-10 h-10">
         <img
