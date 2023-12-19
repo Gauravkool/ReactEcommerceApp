@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { useContext } from "react";
 import { UserContext } from "./Contexts";
+import { withCart } from "./withProvider";
 
-function Navbar({ productCount, setCart }) {
+function Navbar({ cartCount, setCart }) {
   const { setUser } = useContext(UserContext);
   const handleLogoutUser = () => {
     setUser(undefined);
@@ -31,7 +32,7 @@ function Navbar({ productCount, setCart }) {
           </Link>
 
           <span className="border-2 border-primary-default rounded-full text-primary-default hover:text-white hover:bg-primary-default absolute left-6 bottom-6 px-1 text-xs">
-            {productCount}
+            {cartCount}
           </span>
           <span className="ml-5 text-2xl text-primary-dark cursor-pointer">
             <FaRegUserCircle onClick={handleLogoutUser} />
@@ -41,4 +42,4 @@ function Navbar({ productCount, setCart }) {
     </div>
   );
 }
-export default Navbar;
+export default withCart(Navbar);

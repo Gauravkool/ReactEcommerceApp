@@ -2,8 +2,19 @@ import axios from "axios";
 
 export const getProductData = (id) => {
   return axios
-    .get("https://dummyjson.com/products/" + id)
+    .get("https://myeasykart.codeyogi.io/product/" + id)
     .then((response) => response.data);
+};
+
+export const getProductsByIds = (Ids) => {
+  const commaSeperatedIds = Ids.join();
+  return axios
+    .get("https://myeasykart.codeyogi.io/products/bulk", {
+      params: {
+        ids: commaSeperatedIds,
+      },
+    })
+    .then((res) => res.data);
 };
 export const getProductsList = (sortBy, search, page, sortType) => {
   let params = {};
@@ -26,12 +37,26 @@ export const getProductsList = (sortBy, search, page, sortType) => {
     .then((response) => response.data);
 };
 
+export const saveCart = (cart) => {
+  return axios
+    .post(
+      "https://myeasykart.codeyogi.io/carts",
+      { data: cart },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+    .then((res) => res.data);
+};
 
-// {range(1, productData.meta.last_page + 1).map((item) => (
-//   <Button
-//     className="mb-4 px-3 rounded-none mr-1"
-//     key={item}
-//     onClick={() => setPage(item)}>
-//     {item}
-//   </Button>
-// ))}
+export const getCart = () => {
+  return axios
+    .get("https://myeasykart.codeyogi.io/carts", {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((res) => res.data);
+};
