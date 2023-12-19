@@ -12,7 +12,7 @@ function Navbar({ cartCount, setCart }) {
     setUser(undefined);
     localStorage.removeItem("token");
     localStorage.removeItem("myCart");
-    setCart({});
+    // setCart({});
   };
   return (
     <div className="py-4 bg-white">
